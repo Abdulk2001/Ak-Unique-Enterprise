@@ -13,7 +13,7 @@ export default function ShopPage() {
     const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
-    const API = "http://localhost:5000";
+    const API = "https://ak-unique-enterprise-production-fe92.up.railway.app";
 
     useEffect(() => {
         fetchProducts();

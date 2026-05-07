@@ -8,7 +8,7 @@ import Footer from "./component/footer";
 
 export default function CartPage() {
     const navigate = useNavigate();
-    const API = "http://localhost:5000";
+    const API = "https://ak-unique-enterprise-production-fe92.up.railway.app";
 
     const [MyCart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);

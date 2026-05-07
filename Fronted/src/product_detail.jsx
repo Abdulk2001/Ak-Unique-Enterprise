@@ -9,7 +9,7 @@ import Footer from "./component/footer";
 import { FaStar } from "react-icons/fa";
 import { IoBag } from "react-icons/io5";
 
-const API = "http://localhost:5000";
+const API = "https://ak-unique-enterprise-production-fe92.up.railway.app";
 
 export default function ProductDetail() {
     const { id } = useParams();

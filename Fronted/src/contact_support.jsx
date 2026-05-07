@@ -21,7 +21,7 @@ export default function SupportPage() {
         e.preventDefault();
 
         try {
-            await axios.post("http://localhost:5000/support-request", form);
+            await axios.post("https://ak-unique-enterprise-production-fe92.up.railway.app/support-request", form);
 
             alert("Your request has been sent successfully!");
 

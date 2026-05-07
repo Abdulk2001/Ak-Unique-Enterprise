@@ -13,7 +13,7 @@ export default function CategoryDetailPage() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const BASE_URL = "http://localhost:5000";
+    const BASE_URL = "https://ak-unique-enterprise-production-fe92.up.railway.app";
 
     useEffect(() => {
         fetchProducts();

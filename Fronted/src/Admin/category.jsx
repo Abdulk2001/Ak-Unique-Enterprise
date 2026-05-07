@@ -6,7 +6,7 @@ import "./asset/css/admin_style.css";
 import Slidebar from "./component/slidebar";
 import Navbar from "./component/navbar";
 
-const API = "http://localhost:5000";
+const API = "https://ak-unique-enterprise-production-fe92.up.railway.app";
 
 export default function AdminCategory() {
 

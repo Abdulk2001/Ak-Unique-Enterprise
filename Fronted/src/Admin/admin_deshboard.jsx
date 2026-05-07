@@ -33,13 +33,13 @@ export default function AdminDashboard() {
             const [usersRes, productsRes, ordersRes] =
                 await Promise.all([
                     axios.get(
-                        "http://localhost:5000/get-users"
+                        "https://ak-unique-enterprise-production-fe92.up.railway.app/get-users"
                     ),
                     axios.get(
-                        "http://localhost:5000/get-products"
+                        "https://ak-unique-enterprise-production-fe92.up.railway.app/get-products"
                     ),
                     axios.get(
-                        "http://localhost:5000/get-orders"
+                        "https://ak-unique-enterprise-production-fe92.up.railway.app/get-orders"
                     ),
                 ]);
 

@@ -18,7 +18,7 @@ export default function Home() {
   const [hero, setHero] = useState({});
   const [products, setProducts] = useState([]);
 
-  const API = "http://localhost:5000";
+  const API = "https://ak-unique-enterprise-production-fe92.up.railway.app";
 
   useEffect(() => {
     fetchCategories();

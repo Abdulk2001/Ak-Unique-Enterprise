@@ -17,7 +17,7 @@ export default function AdminOrdersPage() {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const API = "http://localhost:5000";
+    const API = "https://ak-unique-enterprise-production-fe92.up.railway.app";
     const navigate = useNavigate();
 
     // ================= FETCH ORDERS =================

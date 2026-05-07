@@ -27,7 +27,7 @@ export default function Register() {
         setError("");
         setLoading(true);
 
-        axios.post("http://localhost:5000/register", {
+        axios.post("https://ak-unique-enterprise-production-fe92.up.railway.app/register", {
             name,
             email,
             password,

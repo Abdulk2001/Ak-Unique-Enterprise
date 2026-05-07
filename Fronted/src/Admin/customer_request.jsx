@@ -14,7 +14,7 @@ export default function CustomerRequests() {
     // 📦 GET ALL REQUESTS
     const fetchData = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/get-support-requests");
+            const res = await axios.get("https://ak-unique-enterprise-production-fe92.up.railway.app/get-support-requests");
             setRequests(res.data.requests);
         } catch (error) {
             console.log(error);
@@ -24,7 +24,7 @@ export default function CustomerRequests() {
     // 🔄 UPDATE STATUS
     const updateStatus = async (id, status) => {
         try {
-            await axios.put(`http://localhost:5000/support-request/${id}`, { status });
+            await axios.put(`https://ak-unique-enterprise-production-fe92.up.railway.app/support-request/${id}`, { status });
             fetchData();
         } catch (error) {
             console.log(error);
@@ -38,7 +38,7 @@ export default function CustomerRequests() {
         if (!confirmDelete) return;
 
         try {
-            await axios.delete(`http://localhost:5000/support-request/${id}`);
+            await axios.delete(`https://ak-unique-enterprise-production-fe92.up.railway.app/support-request/${id}`);
             fetchData();
         } catch (error) {
             console.log(error);

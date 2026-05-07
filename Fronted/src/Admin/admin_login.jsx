@@ -25,7 +25,7 @@ export default function AdminLogin() {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/AdminLogin", {
+      const res = await axios.post("https://ak-unique-enterprise-production-fe92.up.railway.app/AdminLogin", {
         email,
         password
       });
