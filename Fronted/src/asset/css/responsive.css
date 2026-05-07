@@ -1,0 +1,742 @@
+/* ============================================
+   RESPONSIVE.CSS — Complete & Fixed
+   Breakpoints: mobile(≤767) | tablet(768-1024) | desktop-lg(≥1920)
+   ============================================ */
+
+/* ── Large Desktop (1920px+) ─────────────────── */
+@media screen and (min-width: 1920px) {
+    .discount {
+        right: 300px;
+        top: 305px;
+    }
+
+    .custom-card {
+        height: 17rem;
+        width: 25.5rem;
+    }
+
+    .no-page-bg {
+        height: 91vh;
+    }
+
+    .login-bg {
+        height: 91vh;
+    }
+
+    .register-bg {
+        height: 91vh;
+    }
+
+    .product-main-div {
+        margin-bottom: -200px;
+    }
+}
+
+/* ── Tablet (768px – 1024px) ─────────────────── */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* Hero Section */
+    .custom-div {
+        flex-direction: column;
+        padding: 30px 20px;
+        text-align: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .hero-text {
+        order: 1;
+    }
+
+    .hero-img-div {
+        order: 2;
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+
+    .custom-head,
+    .custom-head-2 {
+        font-size: 70px;
+    }
+
+    .img {
+        width: 320px;
+        margin-top: 20px;
+    }
+
+    .discount {
+        right: 20px;
+        top: auto;
+        bottom: 20px;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(0) rotate(350deg);
+        }
+
+        50% {
+            transform: translateY(-50px) rotate(350deg);
+        }
+    }
+
+    /* Category Section */
+    .custom-cetegory {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .custom-card {
+        height: 15rem;
+        width: 20rem;
+        margin: 0 !important;
+    }
+
+
+    .main-cetegory {
+        padding: 0 10px;
+    }
+
+    /* Product Section */
+    .product-main-div {
+        flex-wrap: wrap;
+        justify-content: center;
+        height: auto;
+        gap: 16px;
+    }
+
+    .product-card {
+        width: 45%;
+        height: auto;
+    }
+
+    .product-row-2 {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-1 {
+        margin: 10rem 0.5rem;
+    }
+
+    .btn-2 {
+        margin: 10rem 10rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .section-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .section-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Mobile (≤767px) ─────────────────────────── */
+@media screen and (max-width: 767px) {
+
+    /* Header */
+    .header {
+        height: auto;
+        min-height: 3rem;
+        text-align: center;
+        padding: 8px 10px;
+    }
+
+
+    .header>p {
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    /* Hero Section */
+    .custom-div {
+        flex-direction: column;
+        padding: 20px 15px;
+        text-align: center;
+        justify-content: center;
+        gap: 20px;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .hero-text {
+        order: 1;
+        padding-top: 20px;
+    }
+
+    .hero-img-div {
+        order: 2;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 40px;
+    }
+
+    .custom-head-2 {
+        font-size: 55px;
+    }
+
+    .custom-head {
+        font-size: 55px;
+    }
+
+    .custom-btn-2,
+    .custom-btn-3 {
+        font-size: 15px;
+        padding: 8px 16px;
+        margin: 6px 4px;
+    }
+
+    .img {
+        width: 260px;
+        margin-top: 60px;
+    }
+
+    .discount {
+        right: 60px;
+        top: 540px;
+        bottom: 30px;
+        height: 80px;
+        width: 80px;
+    }
+
+    .discount>p {
+        font-size: 11px;
+    }
+
+    .discount>p>span {
+        font-size: 18px;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(0) rotate(350deg);
+        }
+
+        50% {
+            transform: translateY(-30px) rotate(350deg);
+        }
+    }
+
+    /* Category Section */
+    .main-cetegory {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 15px;
+        margin: 10px 0;
+    }
+
+    .custom-cetegory {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .custom-card {
+        height: 14rem;
+        width: 100%;
+        max-width: 360px;
+        margin: 0 !important;
+    }
+
+
+    .custom-card:hover img {
+        transform: none;
+        border-radius: 20px;
+    }
+
+    .custom-card:hover .move-right {
+        transform: none;
+    }
+
+    /* Product Section */
+    .product-main-div {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        gap: 16px;
+        margin-bottom: 0 !important;
+    }
+
+    .product-row-2 {
+        width: 100%;
+    }
+
+    .product-card {
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+    }
+
+    .btn-1 {
+        margin: 9rem 0.5rem;
+        padding: 6px 20px;
+        font-size: 13px;
+    }
+
+    .btn-2 {
+        margin: 9rem 8.5rem;
+    }
+
+    /* Login Page */
+    .login-bg {
+        height: auto;
+        min-height: 100vh;
+        width: 100%;
+        padding: 30px 15px;
+    }
+
+    .custom-login-div {
+        padding: 30px 20px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .custom-text {
+        font-size: 22px;
+    }
+
+    /* Register Page */
+    .register-bg {
+        height: auto;
+        min-height: 100vh;
+        width: 100%;
+        padding: 30px 15px;
+    }
+
+    /* 404 Page */
+    .no-page-bg {
+        height: 100vh;
+        width: 100%;
+    }
+
+    .no-page-bg div {
+        height: auto;
+        width: 85%;
+        padding: 30px 20px;
+        border-radius: 30px;
+    }
+
+    .no-page-bg h1 {
+        font-size: 8rem;
+    }
+
+    .no-page-bg h2 {
+        font-size: 2rem;
+        text-align: center;
+    }
+}
+
+/* ── Small Mobile (≤400px) ───────────────────── */
+@media screen and (max-width: 400px) {
+
+    .custom-head-2,
+    .custom-head {
+        font-size: 44px;
+    }
+
+    .img {
+        width: 220px;
+    }
+
+    .custom-card {
+        max-width: 300px;
+    }
+
+    .custom-inner-card {
+        max-width: 300px;
+    }
+
+    .product-card {
+        max-width: 300px;
+    }
+
+    .no-page-bg h1 {
+        font-size: 6rem;
+    }
+}
+
+/* --- Responsive CSS for AK UNIQUE ENTERPRISE --- */
+
+
+/* Targeting standard laptops and small desktops */
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+
+    .register {
+        margin-top: 40px;
+    }
+
+    .register-bg {
+        height: auto;
+        min-height: 100vh;
+    }
+
+}
+
+
+/* Tablets aur Choti Screens (Max-width: 1024px) */
+@media (max-width: 1024px) {
+    .custom-login-div {
+        width: 60%;
+        /* Tablet par thoda wide */
+        padding: 40px;
+    }
+
+    .no-page-bg h1 {
+        font-size: 10rem;
+    }
+
+    .custom-text {
+        color: white;
+        /* Branding text color */
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .custom-main-input {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        /* Inputs ke beech ka gap thoda kam kiya */
+    }
+
+    .custom-input {
+        padding: 12px 15px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        outline: none;
+    }
+
+
+
+    .custom-input::placeholder {
+        color: #bbb;
+    }
+
+    /* Checkbox Alignment Fix */
+    .terms-condition {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 5px 0;
+    }
+
+    input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    .main-div-login {
+        margin-top: 70px;
+    }
+
+    .custom-link-footer {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+
+    .link {
+        color: #ff5e00;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .link:hover {
+        text-decoration: underline;
+    }
+
+    /* --- Mobile Responsive (768px and below) --- */
+    @media (max-width: 768px) {
+        .custom-login-div {
+            max-width: 90%;
+            padding: 25px;
+        }
+
+        .custom-text {
+            font-size: 22px;
+        }
+
+        .custom-link-footer {
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+}
+
+/* Mobile Screens (Max-width: 768px) - Generic Tablets/Large Phones */
+@media (max-width: 768px) {
+
+    .register-bg,
+    .login-bg {
+        height: auto;
+        padding: 50px 20px;
+    }
+
+    .custom-login-div {
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+    .custom-text {
+        font-size: 24px;
+    }
+
+    .no-page-bg h1 {
+        font-size: 7rem;
+    }
+
+    .no-page-bg h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Small Mobile Screens (Max-width: 480px) - Main Phone View */
+@media (max-width: 480px) {
+    .custom-login-div {
+        width: 100%;
+        padding: 25px 15px;
+        border-radius: 15px;
+    }
+
+    .custom-text {
+        font-size: 20px;
+    }
+
+    h2.text-center {
+        font-size: 1.2rem;
+    }
+
+    .custom-main-input {
+        gap: 15px;
+        /* Mobile par gap thoda kam */
+    }
+
+    .custom-input {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    /* Already have an account section fix */
+    .custom-link {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    /* Checkbox aur Terms alignment fix */
+    .custom-main-input div {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    input[type="checkbox"] {
+        margin-top: 2px;
+        /* Margin adjust for alignment */
+    }
+
+    .custom-main-input div p {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    /* 404 Page (No-Page) Mobile Fix */
+    .no-page-bg div {
+        width: 90%;
+        height: 60%;
+    }
+
+    .no-page-bg h1 {
+        font-size: 5rem;
+    }
+}
+
+
+
+/* ============================================
+   RESPONSIVE.CSS — CLEAN FIXED VERSION
+   ============================================ */
+
+
+/* ================= LARGE DESKTOP (1920+) ================= */
+@media screen and (min-width: 1920px) {
+
+    .custom-card {
+        height: 420px;
+    }
+
+    .custom-cetegory-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .discount {
+        right: 300px;
+        top: 300px;
+    }
+}
+
+
+/* ================= TABLET (768px - 1024px) ================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* HERO */
+    .custom-div {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    .custom-head,
+    .custom-head-2 {
+        font-size: 70px;
+    }
+
+    /* CATEGORY */
+    .custom-cetegory-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .custom-card {
+        height: 320px;
+    }
+
+    /* PRODUCT */
+    .product-main-div {
+        flex-wrap: wrap;
+        justify-content: center;
+        height: auto;
+    }
+
+    .product-card {
+        width: 45%;
+    }
+
+    /* LOGIN */
+    .custom-login-div {
+        width: 70%;
+    }
+}
+
+
+/* ================= MOBILE (≤767px) ================= */
+@media screen and (max-width: 767px) {
+
+    /* HERO */
+    .custom-div {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+        padding: 20px;
+    }
+
+    .custom-head,
+    .custom-head-2 {
+        font-size: 45px;
+    }
+
+    .img {
+        width: 250px;
+    }
+
+    /* CATEGORY GRID FIX */
+    .main-cetegory {
+        padding: 20px 10px;
+    }
+
+    .custom-cetegory-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .custom-card {
+        width: 100%;
+        height: 260px;
+    }
+
+    .custom-inner-card {
+        padding: 20px;
+    }
+
+    .custom-inner-card h2 {
+        font-size: 1.3rem;
+    }
+
+    /* PRODUCT */
+    .product-main-div {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 100%;
+    }
+
+    /* LOGIN */
+    .custom-login-div {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .custom-text {
+        font-size: 20px;
+    }
+
+    /* 404 */
+    .no-page-bg h1 {
+        font-size: 6rem;
+    }
+
+    .no-page-bg h2 {
+        font-size: 1.5rem;
+    }
+
+    .no-page-bg div {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+}
+
+
+/* ================= SMALL MOBILE (≤400px) ================= */
+@media screen and (max-width: 400px) {
+
+    .custom-head,
+    .custom-head-2 {
+        font-size: 38px;
+    }
+
+    .custom-card {
+        height: 220px;
+    }
+
+    .no-page-bg h1 {
+        font-size: 4.5rem;
+    }
+}
