@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Search, Star, ArrowLeft } from "lucide-react";
+import { Search, Star } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
+
 import Navbar from "./component/navbar";
 import Navbar2 from "./component/navbar2";
 import Footer from "./component/footer";
-import { FaArrowLeft, } from "react-icons/fa";
+
+import { FaArrowLeft } from "react-icons/fa";
 
 export default function ShopPage() {
     const [search, setSearch] = useState("");
@@ -13,15 +15,18 @@ export default function ShopPage() {
     const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
-    const API = "https://ak-unique-enterprise-production-fe92.up.railway.app";
+
+    const API =
+        "https://ak-unique-enterprise-production-fe92.up.railway.app";
 
     useEffect(() => {
         fetchProducts();
-    },);
+    }, []);
 
     const fetchProducts = async () => {
         try {
             const res = await axios.get(`${API}/get-products`);
+
             setProducts(res.data.products);
         } catch (err) {
             console.log(err);
@@ -44,14 +49,18 @@ export default function ShopPage() {
                 {/* HEADER */}
                 <div className="shop-header">
 
-                    <button className="back-btn" onClick={() => navigate(-1)}>
-                     <FaArrowLeft size={20} />
+                    <button
+                        className="back-btn"
+                        onClick={() => navigate(-1)}
+                    >
+                        <FaArrowLeft size={20} />
                     </button>
 
                     <h2>Shop</h2>
 
                     <div className="search-box">
                         <Search size={18} />
+
                         <input
                             type="text"
                             placeholder="Search products..."
@@ -81,6 +90,7 @@ export default function ShopPage() {
                                             src={`${API}/product/${item.image}`}
                                             alt={item.name}
                                         />
+
                                         <span className="badge">
                                             {item.discountBadge || "New"}
                                         </span>
@@ -89,20 +99,37 @@ export default function ShopPage() {
                                     <h3>{item.name}</h3>
 
                                     <div className="price-row">
-                                        <span className="price">₹{item.salePrice}</span>
-                                        <span className="rating">
-                                            <Star size={14} fill="gold" /> 4.5
+
+                                        <span className="price">
+                                            ₹{item.salePrice}
                                         </span>
+
+                                        <span className="rating">
+                                            <Star
+                                                size={14}
+                                                fill="gold"
+                                            />{" "}
+                                            4.5
+                                        </span>
+
                                     </div>
 
-                                    <p className={`stock ${item.stock === "In Stock" ? "in" : "out"}`}>
+                                    <p
+                                        className={`stock ${
+                                            item.stock === "In Stock"
+                                                ? "in"
+                                                : "out"
+                                        }`}
+                                    >
                                         {item.stock}
                                     </p>
 
                                 </Link>
                             ))
                         ) : (
-                            <h3 className="loading">No Products Found</h3>
+                            <h3 className="loading">
+                                No Products Found
+                            </h3>
                         )}
 
                     </div>
