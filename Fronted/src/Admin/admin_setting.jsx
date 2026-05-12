@@ -29,7 +29,7 @@ export default function AdminSettings() {
 
   const handleUpdate = async () => {
     try {
-      const res = await axios.post("https://ak-unique-enterprise.onrender.comadmin-update", {
+      const res = await axios.post("https://ak-unique-enterprise-production-fe92.up.railway.app/admin-update", {
         Email: admin.Email,   // old email (find record)
         Name: name,
         NewEmail: email,      // 🔥 new email added
