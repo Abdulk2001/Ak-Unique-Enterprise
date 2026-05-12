@@ -21,7 +21,7 @@ export default function UserDashboard() {
   // GET USERS
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("https://ak-unique-enterprise-production-fe92.up.railway.app/get-users");
+      const res = await axios.get("https://ak-unique-enterprise.onrender.comget-users");
       setUsers(res.data.users);
     } catch (err) {
       console.log(err);
@@ -31,7 +31,7 @@ export default function UserDashboard() {
   // GET ORDERS COUNT
   const fetchOrdersCount = async () => {
     try {
-      const res = await axios.get("https://ak-unique-enterprise-production-fe92.up.railway.app/get-orders");
+      const res = await axios.get("https://ak-unique-enterprise.onrender.comget-orders");
       setTotalOrders(res.data.orders?.length || 0);
     } catch (err) {
       console.log(err);
@@ -44,7 +44,7 @@ export default function UserDashboard() {
       const newStatus =
         currentStatus === "active" ? "inactive" : "active";
 
-      await axios.put(`https://ak-unique-enterprise-production-fe92.up.railway.app/user-status/${id}`, {
+      await axios.put(`https://ak-unique-enterprise.onrender.comuser-status/${id}`, {
         status: newStatus,
       });
 

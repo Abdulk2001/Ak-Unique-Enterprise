@@ -33,7 +33,7 @@ const AdminHeroManager = () => {
 
   const fetchHero = async () => {
     try {
-      const res = await axios.get("https://ak-unique-enterprise-production-fe92.up.railway.app/get-hero");
+      const res = await axios.get("https://ak-unique-enterprise.onrender.comget-hero");
 
       if (res.data.hero) {
         setHeroData({
@@ -44,7 +44,7 @@ const AdminHeroManager = () => {
         });
 
         if (res.data.hero.image) {
-          setImagePreview(`https://ak-unique-enterprise-production-fe92.up.railway.app/heroSection/${res.data.hero.image}`);
+          setImagePreview(`https://ak-unique-enterprise.onrender.comheroSection/${res.data.hero.image}`);
         }
       }
     } catch (err) {
@@ -78,7 +78,7 @@ const AdminHeroManager = () => {
     }
 
     try {
-      await axios.post("https://ak-unique-enterprise-production-fe92.up.railway.app/save-hero", formData);
+      await axios.post("https://ak-unique-enterprise.onrender.comsave-hero", formData);
       alert("Hero Updated ✅");
     } catch (err) {
       console.log(err.response?.data || err);
