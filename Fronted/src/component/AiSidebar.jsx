@@ -11,7 +11,7 @@ export default function AiSidebar() {
     const messagesEndRef = useRef(null);
 
     // ⚠️ Better practice: move this to .env later
-    const API_KEY = "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";
+    const API_KEY = "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";
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
