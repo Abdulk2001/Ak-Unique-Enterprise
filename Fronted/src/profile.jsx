@@ -32,7 +32,7 @@ export default function Profile() {
         if (!confirmDelete) return;
 
         try {
-            const res = await fetch("https://ak-unique-enterprise-production-fe92.up.railway.app/delete-account", {
+            const res = await fetch("https://ak-unique-enterprise.onrender.comdelete-account", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

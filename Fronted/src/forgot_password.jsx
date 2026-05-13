@@ -20,7 +20,7 @@
             setLoading(true);
 
             try {
-                const res = await fetch("https://ak-unique-enterprise-production-fe92.up.railway.app/forgot-password", {
+                const res = await fetch("https://ak-unique-enterprise.onrender.comforgot-password", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email })
