@@ -1162,11 +1162,11 @@ app.put("/update-order/:id", async (req, res) => {
         const { orderStatus } = req.body;
 
         // Update order in DB
-        const updatedOrder = await orders.findByIdAndUpdate(
-            req.params.id,
-            { orderStatus },
-            { new: true }
-        );
+const updatedOrder = await orders.findByIdAndUpdate(
+    req.params.id,
+    { orderStatus },
+    { returnDocument: "after" }
+);
 
         if (!updatedOrder) {
             return res.status(404).json({
