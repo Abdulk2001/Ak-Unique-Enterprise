@@ -1409,6 +1409,36 @@ app.delete("/delete-cart/:id", async (req, res) => {
     }
 });
 
+
+
+app.get("/test-email", async (req, res) => {
+
+    try {
+
+        await transporter.sendMail({
+
+            from: process.env.EMAIL_USER,
+
+            to: process.env.EMAIL_USER,
+
+            subject: "Test Email",
+
+            html: "<h1>Email Working Successfully</h1>"
+
+        });
+
+        res.send("Email Sent");
+
+    } catch (err) {
+
+        console.log(err);
+
+        res.status(500).send(err.message);
+
+    }
+
+});
+
 // ================= SERVER =================
 const PORT = process.env.PORT || 5000;
 
