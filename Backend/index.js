@@ -238,7 +238,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
     console.log("Server is working...");
 });
 
@@ -848,265 +848,238 @@ app.post("/reset-password", async (req, res) => {
 
 // ================= PLACE ORDER API (REPLACE OLD /order API) =================
 
+// ================= PLACE ORDER API =================
+
 app.post("/order", async (req, res) => {
     try {
-        const { userId, MyCart, customerInfo, paymentInfo, pricing } = req.body;
 
-        if (
-            !userId ||
-            !Array.isArray(MyCart) ||
-            MyCart.length === 0 ||
-            !customerInfo ||
-            !paymentInfo
-        ) {
-            return res.status(400).json({
-                success: false,
-                message: "Missing required fields",
-            });
-        }
-
-        const subtotal = Number(pricing?.subtotal || 0);
-        const deliveryCharge = Number(pricing?.deliveryCharge || 0);
-        const codCharge = Number(pricing?.codCharge || 0);
-        const gstAmount = Number(pricing?.gstAmount || 0);
-
-        const grandTotal =
-            Number(pricing?.grandTotal) ||
-            subtotal + deliveryCharge + codCharge + gstAmount;
-
-        const newOrder = new orders({
+        const {
             userId,
             MyCart,
             customerInfo,
             paymentInfo,
+            pricing
+        } = req.body;
+
+        // ================= VALIDATION =================
+        if (
+            !userId ||
+            !Array.isArray(MyCart) ||
+            MyCart.length === 0 ||
+            !customerInfo
+        ) {
+            return res.status(400).json({
+                success: false,
+                message: "Missing required fields"
+            });
+        }
+
+        // ================= SAFE NUMBERS =================
+        const subtotal = Number(pricing?.subtotal || 0);
+
+        const deliveryCharge = Number(
+            pricing?.deliveryCharge || 0
+        );
+
+        const codCharge = Number(
+            pricing?.codCharge || 0
+        );
+
+        const gstAmount = Number(
+            pricing?.gstAmount || 0
+        );
+
+        const grandTotal = Number(
+            pricing?.grandTotal || 0
+        );
+
+        // ================= CREATE ORDER =================
+        const newOrder = new orders({
+            userId,
+
+            MyCart,
+
+            customerInfo,
+
+            paymentInfo: {
+                method:
+                    paymentInfo?.method || "cod",
+
+                status:
+                    paymentInfo?.status ||
+                    "Pending",
+
+                transactionId:
+                    paymentInfo?.transactionId ||
+                    "N/A"
+            },
+
             pricing: {
                 subtotal,
                 deliveryCharge,
                 codCharge,
                 gstAmount,
-                grandTotal,
+                grandTotal
             },
-            orderStatus: "Pending",
+
+            orderStatus: "Pending"
         });
 
+        // ================= SAVE ORDER =================
         const savedOrder = await newOrder.save();
 
-
-        /* =========================
-           CLEAR USER CART
-        ========================= */
-        await cartCollection.deleteMany({ userId });
-
-
-        /* =========================
-           GENERATE INVOICE PDF
-        ========================= */
-        const invoicesDir = path.join(__dirname, "invoices");
-
-        if (!fs.existsSync(invoicesDir)) {
-            fs.mkdirSync(invoicesDir);
-        }
-
-        const invoicePath = path.join(
-            invoicesDir,
-            `invoice-${savedOrder._id}.pdf`
-        );
-
-        const doc = new PDFDocument({
-            margin: 40,
-            size: "A4",
+        // ================= CLEAR CART =================
+        await cartCollection.deleteMany({
+            userId
         });
 
-        doc.pipe(fs.createWriteStream(invoicePath));
-
-        /* =========================
-           COLORS & HEADER
-        ========================= */
-        const primary = "#1a1a1a";
-        const accent = "#c9a227";
-        const light = "#f8f8f8";
-
-        doc.rect(0, 0, 595, 110).fill(primary);
-
-        doc
-            .fillColor("#ffffff")
-            .fontSize(24)
-            .text("AK UNIQUE ENTERPRISE", 50, 35, {
-                align: "center",
-            });
-
-        doc
-            .fillColor(accent)
-            .fontSize(12)
-            .text("Premium Order Invoice", 50, 70, {
-                align: "center",
-            });
-
-        /* =========================
-           INVOICE INFO BOX
-        ========================= */
-        doc
-            .fillColor(light)
-            .roundedRect(40, 130, 515, 90, 10)
-            .fill();
-
-        doc.fillColor(primary).fontSize(12);
-
-        doc.text(`Invoice #: ${savedOrder._id}`, 60, 150);
-        doc.text(`Date: ${new Date().toLocaleDateString()}`, 60, 170);
-        doc.text(`Payment: ${paymentInfo.method}`, 320, 150);
-        doc.text(`Status: ${savedOrder.orderStatus}`, 320, 170);
-
-        /* =========================
-           CUSTOMER DETAILS
-        ========================= */
-        doc
-            .fillColor(accent)
-            .fontSize(15)
-            .text("Customer Details", 40, 250);
-
-        doc.fillColor(primary).fontSize(11);
-
-        doc.text(`Name: ${customerInfo.fullName}`, 50, 275);
-        doc.text(`Phone: ${customerInfo.phone}`, 50, 292);
-        doc.text(`Email: ${customerInfo.email}`, 50, 309);
-        doc.text(
-            `Address: ${customerInfo.address}, ${customerInfo.city}, ${customerInfo.state} - ${customerInfo.pincode}`,
-            50,
-            326,
-            { width: 500 }
-        );
-
-        /* =========================
-           PRODUCTS TABLE
-        ========================= */
-        let y = 390;
-
-        doc
-            .fillColor(primary)
-            .rect(40, y, 515, 28)
-            .fill();
-
-        doc.fillColor("#ffffff").fontSize(11);
-        doc.text("Product", 55, y + 8);
-        doc.text("Qty", 320, y + 8);
-        doc.text("Price", 430, y + 8);
-
-        y += 35;
-
-        MyCart.forEach((item, index) => {
-            doc
-                .fillColor(index % 2 === 0 ? "#fafafa" : "#f0f0f0")
-                .rect(40, y - 5, 515, 28)
-                .fill();
-
-            doc.fillColor(primary).fontSize(10);
-            doc.text(item.name, 55, y + 3, { width: 240 });
-            doc.text(String(item.quantity), 330, y + 3);
-            doc.text(`₹${item.salePrice}`, 430, y + 3);
-
-            y += 28;
-        });
-
-        /* =========================
-           TOTAL BOX
-        ========================= */
-        y += 20;
-
-        doc
-            .fillColor(light)
-            .roundedRect(320, y, 235, 110, 10)
-            .fill();
-
-        doc.fillColor(primary).fontSize(11);
-
-        doc.text(`Subtotal: ₹${subtotal}`, 340, y + 15);
-        doc.text(`Delivery: ₹${deliveryCharge}`, 340, y + 35);
-        doc.text(`COD: ₹${codCharge}`, 340, y + 55);
-        doc.text(`GST: ₹${gstAmount}`, 340, y + 75);
-
-        doc
-            .fillColor(accent)
-            .fontSize(14)
-            .text(`Grand Total: ₹${grandTotal}`, 340, y + 95);
-
-        /* =========================
-           FOOTER
-        ========================= */
-        doc
-            .fillColor(primary)
-            .fontSize(10)
-            .text(
-                "Thank you for choosing AK Unique Enterprise.",
-                50,
-                760,
-                { align: "center" }
-            );
-
-        doc.end();
-
-        /* =========================
-           SEND EMAIL
-        ========================= */
-        if (customerInfo.email) {
-            const itemRows = MyCart.map(
-                (item) =>
-                    `<tr>
-                        <td>${item.name}</td>
-                        <td>${item.quantity}</td>
-                        <td>₹${item.salePrice}</td>
-                    </tr>`
-            ).join("");
-
-            await transporter.sendMail({
-                from: process.env.EMAIL_USER,
-                to: customerInfo.email,
-                subject: "Order Confirmation",
-                html: `
-                    <h2>Thank you for your order!</h2>
-                    <p>Hi ${customerInfo.fullName}, your order has been placed successfully.</p>
-
-                    <h3>Order Summary</h3>
-                    <table border="1" cellpadding="8" cellspacing="0">
-                        <tr>
-                            <th>Product</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                        </tr>
-                        ${itemRows}
-                    </table>
-
-                    <h3>Pricing</h3>
-                    <p>Subtotal: ₹${subtotal}</p>
-                    <p>Delivery Charge: ₹${deliveryCharge}</p>
-                    <p>COD Charge: ₹${codCharge}</p>
-                    <p>GST: ₹${gstAmount}</p>
-                    <h2>Total: ₹${grandTotal}</h2>
-
-                    <p>Order ID: ${savedOrder._id}</p>
-                `,
-                attachments: [
-                    {
-                        filename: `invoice-${savedOrder._id}.pdf`,
-                        path: invoicePath,
-                    },
-                ],
-            });
-        }
-
+        // ================= SEND SUCCESS RESPONSE =================
         res.status(201).json({
             success: true,
             message: "Order placed successfully",
-            order: savedOrder,
+            order: savedOrder
         });
 
+        // =====================================================
+        // EMAIL SEND (BACKGROUND)
+        // =====================================================
+
+        try {
+
+            if (customerInfo?.email) {
+
+                const itemRows = MyCart.map(
+                    (item) => `
+<tr>
+    <td style="padding:8px;border:1px solid #ddd;">
+        ${item.name}
+    </td>
+
+    <td style="padding:8px;border:1px solid #ddd;">
+        ${item.quantity}
+    </td>
+
+    <td style="padding:8px;border:1px solid #ddd;">
+        ₹${item.salePrice}
+    </td>
+</tr>
+`
+                ).join("");
+
+                await transporter.sendMail({
+
+                    from: process.env.EMAIL_USER,
+
+                    to: customerInfo.email,
+
+                    subject: "Order Confirmation",
+
+                    html: `
+<div style="font-family:Arial;padding:20px;">
+
+    <h2>
+        Thank You For Your Order
+    </h2>
+
+    <p>
+        Hello ${customerInfo.fullName},
+    </p>
+
+    <p>
+        Your order has been placed successfully.
+    </p>
+
+    <h3>
+        Order Details
+    </h3>
+
+    <table
+        style="
+            border-collapse:collapse;
+            width:100%;
+        "
+    >
+        <tr>
+            <th style="padding:10px;border:1px solid #ddd;">
+                Product
+            </th>
+
+            <th style="padding:10px;border:1px solid #ddd;">
+                Qty
+            </th>
+
+            <th style="padding:10px;border:1px solid #ddd;">
+                Price
+            </th>
+        </tr>
+
+        ${itemRows}
+
+    </table>
+
+    <h3 style="margin-top:20px;">
+        Pricing
+    </h3>
+
+    <p>
+        Subtotal:
+        ₹${subtotal}
+    </p>
+
+    <p>
+        Delivery Charge:
+        ₹${deliveryCharge}
+    </p>
+
+    <p>
+        COD Charge:
+        ₹${codCharge}
+    </p>
+
+    <p>
+        GST:
+        ₹${gstAmount}
+    </p>
+
+    <h2>
+        Grand Total:
+        ₹${grandTotal}
+    </h2>
+
+    <p>
+        Order ID:
+        ${savedOrder._id}
+    </p>
+
+</div>
+`
+                });
+
+                console.log(
+                    "Order email sent successfully"
+                );
+            }
+
+        } catch (emailErr) {
+
+            console.log(
+                "EMAIL ERROR:",
+                emailErr.message
+            );
+
+        }
+
     } catch (err) {
-        console.error("Order Error:", err);
+
+        console.log(
+            "ORDER ERROR:",
+            err
+        );
 
         res.status(500).json({
             success: false,
             message: "Order failed",
-            error: err.message,
+            error: err.message
         });
     }
 });
