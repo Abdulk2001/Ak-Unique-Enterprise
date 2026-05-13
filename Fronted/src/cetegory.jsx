@@ -10,7 +10,7 @@ import axios from 'axios'
 export default function Category() {
 
     const [categories, setCategories] = useState([]);
-    const BASE_URL = "https://ak-unique-enterprise-production-fe92.up.railway.app";
+    const BASE_URL = "https://ak-unique-enterprise.onrender.com";
     const navigate = useNavigate();
 
     useEffect(() => {

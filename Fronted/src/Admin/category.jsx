@@ -14,7 +14,7 @@ import Slidebar from "./component/slidebar";
 import Navbar from "./component/navbar";
 
 const API =
-    "https://ak-unique-enterprise-production-fe92.up.railway.app";
+    "https://ak-unique-enterprise.onrender.com";
 
 export default function AdminCategory() {
 

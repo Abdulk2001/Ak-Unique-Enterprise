@@ -14,7 +14,7 @@ export default function CustomerRequests() {
     // 📦 GET ALL REQUESTS
     const fetchData = async () => {
         try {
-            const res = await axios.get("https://ak-unique-enterprise.onrender.comget-support-requests");
+            const res = await axios.get("https://ak-unique-enterprise.onrender.com/get-support-requests");
             setRequests(res.data.requests);
         } catch (error) {
             console.log(error);
@@ -24,7 +24,7 @@ export default function CustomerRequests() {
     // 🔄 UPDATE STATUS
     const updateStatus = async (id, status) => {
         try {
-            await axios.put(`https://ak-unique-enterprise.onrender.comsupport-request/${id}`, { status });
+            await axios.put(`https://ak-unique-enterprise.onrender.com/support-request/${id}`, { status });
             fetchData();
         } catch (error) {
             console.log(error);

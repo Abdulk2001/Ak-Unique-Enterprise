@@ -13,7 +13,7 @@ export default function Login() {
 
     const handleLogin = () => {
 
-        axios.post("https://ak-unique-enterprise.onrender.comlogin", { email, password })
+        axios.post("https://ak-unique-enterprise.onrender.com/login", { email, password })
             .then((res) => {
 
                 const userData = res.data.user;

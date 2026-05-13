@@ -13,7 +13,7 @@ import qr from "./asset/img/online.png";
 
 export default function BuyNowPage() {
     const navigate = useNavigate();
-    const API = "https://ak-unique-enterprise-production-fe92.up.railway.app";
+    const API = "https://ak-unique-enterprise.onrender.com";
 
     const [cart, setCart] = useState([]);
     const [showQR, setShowQR] = useState(false);

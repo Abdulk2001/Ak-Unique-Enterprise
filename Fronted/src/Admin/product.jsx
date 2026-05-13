@@ -6,7 +6,7 @@ import Navbar from "./component/navbar";
 import { useNavigate } from "react-router-dom";
 import { Trash2, PlusCircle, Pencil } from "lucide-react";
 
-const API = "https://ak-unique-enterprise-production-fe92.up.railway.app";
+const API = "https://ak-unique-enterprise.onrender.com";
 
 export default function AdminProduct() {
 

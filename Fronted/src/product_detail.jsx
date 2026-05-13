@@ -10,7 +10,7 @@ import { FaStar } from "react-icons/fa";
 import { IoBag } from "react-icons/io5";
 
 const API =
-    "https://ak-unique-enterprise-production-fe92.up.railway.app";
+    "https://ak-unique-enterprise.onrender.com";
 
 export default function ProductDetail() {
 

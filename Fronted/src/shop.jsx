@@ -17,7 +17,7 @@ export default function ShopPage() {
     const navigate = useNavigate();
 
     const API =
-        "https://ak-unique-enterprise-production-fe92.up.railway.app";
+        "https://ak-unique-enterprise.onrender.com";
 
     useEffect(() => {
         fetchProducts();

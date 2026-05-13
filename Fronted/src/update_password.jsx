@@ -29,7 +29,7 @@ export default function ResetPassword() {
         setLoading(true);
 
         try {
-            const res = await fetch("https://ak-unique-enterprise.onrender.comreset-password", {
+            const res = await fetch("https://ak-unique-enterprise.onrender.com/reset-password", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, newPassword: password })

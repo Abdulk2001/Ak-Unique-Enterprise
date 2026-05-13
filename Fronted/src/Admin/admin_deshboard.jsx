@@ -33,15 +33,15 @@ export default function AdminDashboard() {
                 ordersRes
             ] = await Promise.all([
                 axios.get(
-                    "https://ak-unique-enterprise.onrender.comget-users"
+                    "https://ak-unique-enterprise.onrender.com/get-users"
                 ),
 
                 axios.get(
-                    "https://ak-unique-enterprise.onrender.comget-products"
+                    "https://ak-unique-enterprise.onrender.com/get-products"
                 ),
 
                 axios.get(
-                    "https://ak-unique-enterprise.onrender.comget-orders"
+                    "https://ak-unique-enterprise.onrender.com/get-orders"
                 ),
             ]);
 

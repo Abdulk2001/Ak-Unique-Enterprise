@@ -30,7 +30,7 @@ export default function EditProfile() {
         setLoading(true);
 
         try {
-            const res = await fetch("https://ak-unique-enterprise.onrender.comupdate-profile", {
+            const res = await fetch("https://ak-unique-enterprise.onrender.com/update-profile", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

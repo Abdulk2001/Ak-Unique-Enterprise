@@ -19,7 +19,7 @@ export default function OrderHistory() {
     const [loading, setLoading] = useState(true);
 
     const API =
-        "https://ak-unique-enterprise-production-fe92.up.railway.app";
+        "https://ak-unique-enterprise.onrender.com";
 
     const navigate = useNavigate();
 

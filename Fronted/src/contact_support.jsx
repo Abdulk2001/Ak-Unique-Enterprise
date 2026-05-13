@@ -21,7 +21,7 @@ export default function SupportPage() {
         e.preventDefault();
 
         try {
-            await axios.post("https://ak-unique-enterprise.onrender.comsupport-request", form);
+            await axios.post("https://ak-unique-enterprise.onrender.com/support-request", form);
 
             alert("Your request has been sent successfully!");
 

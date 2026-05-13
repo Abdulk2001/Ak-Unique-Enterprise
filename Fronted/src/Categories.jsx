@@ -22,7 +22,7 @@ export default function CategoryDetailPage() {
     const [loading, setLoading] = useState(true);
 
     const BASE_URL =
-        "https://ak-unique-enterprise-production-fe92.up.railway.app";
+        "https://ak-unique-enterprise.onrender.com";
 
     useEffect(() => {
 

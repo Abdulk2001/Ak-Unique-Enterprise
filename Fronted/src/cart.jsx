@@ -19,7 +19,7 @@ export default function CartPage() {
     const navigate = useNavigate();
 
     const API =
-        "https://ak-unique-enterprise-production-fe92.up.railway.app";
+        "https://ak-unique-enterprise.onrender.com";
 
     const [MyCart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);

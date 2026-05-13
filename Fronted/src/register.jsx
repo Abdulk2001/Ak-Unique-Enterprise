@@ -27,7 +27,7 @@ export default function Register() {
         setError("");
         setLoading(true);
 
-        axios.post("https://ak-unique-enterprise.onrender.comregister", {
+        axios.post("https://ak-unique-enterprise.onrender.com/register", {
             name,
             email,
             password,
